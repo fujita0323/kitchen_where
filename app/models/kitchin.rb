@@ -1,0 +1,2 @@
+class Kitchin < ApplicationRecord
+end
