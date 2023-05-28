@@ -1,0 +1,86 @@
+
+<section class="inner">
+	<h2 class="section-ttl">キッチン詳細</h2>
+	<table class="customer_info mb3">
+		<thead>
+			<th></th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>メーカー</td>
+				<td><%= @kitchen.maker.name %></td>
+			</tr>
+			<tr>
+				<td>ジャンル</td>
+				<td><%= @kitchen.genre.name %></td>
+			</tr>
+			<tr>
+				<td>画像</td>
+				<td><%= image_tag @kitchen.image, size: "200x200" %></td>
+			</tr>
+			<tr>
+				<td>価格</td>
+				<td><%= @kitchen.price %></td>
+			</tr>
+			<tr>
+				<td>評価</td>
+				<td><%#= @kitchen.posts.average(:star) %>
+
+         <div id="post_raty_average"></div>
+<!--newページのやつ-->
+ <script>
+	var elem = document.getElementById('post_raty_average');
+	var opt = {
+	    starOn: "<%= asset_path('star-on.png') %>",
+	    starOff: "<%= asset_path('star-off.png') %>",
+	    starHalf: "<%= asset_path('star-half.png') %>",
+	    half      : false,
+	    readOnly: true,
+	    score: <%= @kitchen.posts.average(:star) %>,
+	  };
+	  raty(elem,opt);
+</script>
+
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="flex">
+	  <%= link_to "レビュー", new_kitchen_post_path(@kitchen), class: "btn btn-primary ml2" %>
+
+
+
+		<h1>レビュー投稿一覧</h1>
+
+  <% @kitchen.posts.each do |post| %>
+
+  <p>ニックネーム</p>
+  <span><%= post.customer.nickname %></span>
+  <p>キッチン写真</p>
+  <span><%= image_tag post.customer.profile_image %></span>
+  <p>プロフィール写真</p>
+  <span><%= image_tag post.image %></span>
+  <p><%= link_to "使用感・レビュー", kitchen_post_path(@kitchen.id,post.id) %></p>
+  <span><%= post.review %></span>
+  <p>評価</p>
+  <div id="post_raty_<%= post.id %>"></div>
+
+<!--newページのやつ-->
+ <script>
+	var elem = document.getElementById('post_raty_<%= post.id %>');
+	var opt = {
+	    starOn: "<%= asset_path('star-on.png') %>",
+	    starOff: "<%= asset_path('star-off.png') %>",
+	    starHalf: "<%= asset_path('star-half.png') %>",
+	    half      : false,
+	    readOnly: true,
+	    score: <%= post.star %>,
+	  };
+	  raty(elem,opt);
+</script>
+
+<% end %>
+	</div>
+</section>

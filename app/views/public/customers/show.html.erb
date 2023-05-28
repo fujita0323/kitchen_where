@@ -1,0 +1,44 @@
+<h2>マイページ</h2>
+<h5>登録情報</h5>
+<%= link_to "編集する", customers_information_edit_path, class: "btn btn-success" %>
+    <table>
+      <thead>
+        <tr>
+          <td>プロフィール画像</td>
+          <td><%= image_tag @customer.get_profile_image %></td>
+        </tr>
+        <tr>
+          <td>ニックネーム</td>
+          <td><%= @customer.nickname %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @customer.email %></td>
+        </tr>
+      </thead>
+       <tbody>
+     <% @customer.posts.each do |post| %>
+      <table class="table table-borderless">
+        <tr>
+          <td>投稿一覧</td>
+			　	<td><%= image_tag post.image %></td>
+          <td><%= post.review %></td>
+         <td id="post_raty_<%= post.id %>"></td>
+
+<!--newページのやつ-->
+ <script>
+	var elem = document.getElementById('post_raty_<%= post.id %>');
+	var opt = {
+	    starOn: "<%= asset_path('star-on.png') %>",
+	    starOff: "<%= asset_path('star-off.png') %>",
+	    starHalf: "<%= asset_path('star-half.png') %>",
+	    half      : false,
+	    readOnly: true,
+	    score: <%= post.star %>,
+	  };
+	  raty(elem,opt);
+</script>        
+        </tr>
+      </tbody>
+    </table>
+    <% end %>

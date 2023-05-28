@@ -1,0 +1,22 @@
+<h2>メーカー新規登録</h2>
+<%= render 'form', maker: @maker, url: admin_makers_path, submit: '登録' %>
+
+<h2>メーカー一覧</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>ジャンル名</th>
+					<th>状態</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @makers.each do |maker| %>
+				<!--飛ぶ先を指定する-->
+					<tr>
+						<td><%= link_to maker.name, admin_makers_path(maker_id: maker.id) %></td>
+						<td><%= link_to "編集", edit_admin_maker_path(maker), class: "btn btn-success" %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>

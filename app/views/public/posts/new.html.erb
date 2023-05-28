@@ -1,0 +1,25 @@
+<h1>レビュー投稿フォーム</h1>
+  <%= form_with model: [@kitchen,@post] do |f| %>
+    <h4>画像</h4>
+      <%= f.file_field :image, accept: "image/*" %>
+    <h4>レビュー</h4>
+    <%= f.text_field :review %>
+    <h4>評価</h4>
+    <%= f.hidden_field :kitchen_id %>
+    <%= f.submit '投稿' %>
+    <p>評価:</P>
+    <div id="post_raty"></div>
+
+    <!--<%#= f.hidden_field :evaluation, id: :post_raty %>-->
+  </div>
+  <% end %>
+
+<script>
+var elem = document.getElementById('post_raty');
+var opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+  };
+  raty(elem,opt);
+</script>

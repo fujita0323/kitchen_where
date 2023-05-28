@@ -1,0 +1,5 @@
+<section class="inner">
+	<h2 class="section-ttl">ジャンル名編集</h2>
+  <%= render 'form', genre: @genre, url: admin_genre_path(@genre), submit: '更新' %>
+</section>
+<%= link_to '削除', admin_genre_path, method: :delete %>

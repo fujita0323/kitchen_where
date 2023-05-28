@@ -1,0 +1,5 @@
+<%= form_with model:maker, url: url do |f| %>
+	<%= f.label :name, "メーカー名:" %>
+	<%= f.text_field :name %>
+	<%= f.submit submit, class: "btn btn-primary ml2" %>
+<% end %>

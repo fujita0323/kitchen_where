@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
+
   def change
     create_table :customers do |t|
       ## Database authenticatable
@@ -35,7 +36,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       t.datetime :birth_date
       t.string :gender
       t.string :profile_image
-      t.boolean :is_deleted, null: false, default: true
+      t.boolean :is_deleted, null: false, default: false
 
 
       t.timestamps null: false

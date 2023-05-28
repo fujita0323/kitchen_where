@@ -1,0 +1,70 @@
+<section class="inner">
+  <% if flash[:notice] %>
+    <p class="text-active"><%= flash[:notice] %></p>
+  <% end %>
+	<h2 class="section-ttl">レビュー詳細</h2>
+	<table class="customer_info mb3">
+		<thead>
+			<th></th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>写真</td>
+				<td><%= image_tag @post.customer.profile_image %></td>
+			</tr>
+			<tr>
+				<td>写真</td>
+				<td><%= image_tag @post.image %></td>
+			</tr>
+			<tr>
+				<td>レビュー</td>
+				<td><%= @post.review %></td>
+			</tr>
+			<tr>
+				<td>評価</td>
+         <td id="post_raty_<%= @post.id %>"></td>
+
+ <script>
+	var elem = document.getElementById('post_raty_<%= @post.id %>');
+	var opt = {
+	    starOn: "<%= asset_path('star-on.png') %>",
+	    starOff: "<%= asset_path('star-off.png') %>",
+	    starHalf: "<%= asset_path('star-half.png') %>",
+	    half      : false,
+	    readOnly: true,
+	    score: <%= @post.star %>,
+	  };
+	  raty(elem,opt);
+</script>        
+			</tr>
+		</tbody>
+		<tfoot>
+			<% @post.comments.each do |comment| %>
+			<tr>
+        <td>
+				<%= form_with url: post_comment_path(@post.id,comment.id), method: :delete do |f| %>
+		    <%= f.hidden_field :kitchen_id, value: params[:kitchen_id] %>
+        <%= f.submit '削除' %>
+				<% end %>
+        </td>
+        <td><%= comment.customer.nickname %></td>
+        <td><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.reaction %></td>
+      </tr>
+      <% end %>
+      <tr>
+      	<td><%= link_to "コメント", new_post_comment_path(@post.id,kitchen_id: params[:kitchen_id]), class: "btn btn-primary" %></td>
+      </tr>
+ </tfoot>
+	</table>
+	<div class="flex">
+		<% if @post.customer == current_customer %>
+		<%= link_to "編集", edit_kitchen_post_path, class: "btn btn-primary" %>
+		<%= link_to "削除", kitchen_post_path(@post.kitchen,@post), class: "btn btn-danger", method: :delete %>
+		<% end %>
+	</div>
+
+
+
+</section>

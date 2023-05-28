@@ -1,0 +1,23 @@
+<h4>会員情報編集</h4>
+  <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
+      <table>
+        <tbody>
+          <tr>
+            <td>写真</td>
+          <td><%= f.file_field :profile_image %></td>
+          <h5>※50MB以下</h5>
+          </tr>
+          <tr>
+            <td>ニックネーム</td>
+            <td><%= f.text_field :nickname %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= f.text_field :email %></td>
+          </tr>
+        </tbody>
+      </table>
+
+<%= f.submit '編集内容を保存', class: "btn btn-success" %>
+<%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %>
+<% end %>

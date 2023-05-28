@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_24_163949) do
+ActiveRecord::Schema.define(version: 2023_05_18_120036) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,7 +53,8 @@ ActiveRecord::Schema.define(version: 2023_03_24_163949) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "customers_id"
+    t.integer "customer_id"
+    t.integer "post_id"
     t.text "reaction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -69,12 +70,20 @@ ActiveRecord::Schema.define(version: 2023_03_24_163949) do
     t.datetime "birth_date"
     t.string "gender"
     t.string "profile_image"
-    t.boolean "is_deleted", default: true, null: false
+    t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["nickname"], name: "index_customers_on_nickname", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.integer "kitchen_id"
+    t.integer "post_id"
+    t.float "star"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "genres", force: :cascade do |t|
@@ -83,18 +92,19 @@ ActiveRecord::Schema.define(version: 2023_03_24_163949) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "kitchins", force: :cascade do |t|
+  create_table "kitchens", force: :cascade do |t|
     t.integer "genre_id"
     t.integer "maker_id"
     t.string "name"
     t.text "introduction"
     t.integer "price"
+    t.text "title"
+    t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "makers", force: :cascade do |t|
-    t.integer "genre_id"
     t.string "name"
     t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
@@ -102,9 +112,10 @@ ActiveRecord::Schema.define(version: 2023_03_24_163949) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "comment_id"
+    t.integer "customer_id"
     t.text "review"
-    t.string "evaluation"
+    t.float "star"
+    t.integer "kitchen_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

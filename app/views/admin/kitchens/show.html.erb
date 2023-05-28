@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-12">
+      <h2>商品詳細</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 px-3 mb-3 d-flex">
+    		<%= image_tag @kitchen.get_image(100,100) %>
+    </div>
+
+    <div class="col-md-6">
+      <table class="table table-borderless">
+        <tr>
+          <td style="width:30%">ジャンル</td>
+          <td><%= @kitchen.genre.name %></td>
+        </tr>
+        <tr>
+          <td style="width:30%">メーカー</td>
+          <td><%= @kitchen.maker.name %></td>
+        </tr>
+        <tr>
+          <td style="width:30%">商品名</td>
+          <td><%= @kitchen.name %></td>
+        </tr>
+        <tr>
+          <td>商品説明</td>
+          <td class="text-break">
+            <%= @kitchen.introduction %>
+          </td>
+        </tr>
+        <tr>
+          <td>税込価格<br>(税抜価格)</td>
+          <td>
+<%= @kitchen.with_tax_price %>(<%= @kitchen.price %>)円
+</td>
+        </tr>
+        <tr>
+          <td>
+            <%= link_to "編集する", edit_admin_kitchen_path(@kitchen), class: "btn btn-success" %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="search-form">
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, options = { include_blank: true } %>
+    <%= f.collection_select :maker_id, Maker.all, :id, :name, options = { include_blank: true } %>
+    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
+<div class="post-list">
+  <% @kitchens.each do |kitchen| %>
+    <td><%= link_to kitchen.name, kitchen_path(kitchen), style: "color: black;" %></td>
+    <td><%= image_tag kitchen.image %></td>
+  <% end %>
+</div>
+<!--あと写真とか諸々-->

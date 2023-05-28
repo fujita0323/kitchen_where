@@ -1,0 +1,40 @@
+<h2><%= @customer.nickname %>さんの会員情報</h2>
+<table>
+  <tbody>
+    <tr>
+      <th>会員ID</th>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <th>ニックネーム</th>
+      <td><%= @customer.nickname %></td>
+    </tr>
+    <tr>
+      <th>メールアドレス</th>
+      <td><%= @customer.email %></td>
+    </tr>
+    <tr>
+      <th>投稿一覧</th>
+      <% @customer.posts.each do |post| %>
+        <td><%= post.review %> <%= link_to '削除', admin_post_path(post), method: :delete %></td>
+      <% end %>
+    </tr>
+
+    <tr>
+      <th>会員ステータス</th>
+      <td>
+        <% if @customer.is_deleted %>
+           <span>退会</span>
+        <% else %>
+          <span>有効</span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= link_to "編集する", edit_admin_customer_path, class:"btn btn-success" %>
+        <%= link_to "トップページ", admin_root_path, class:"btn btn-primary" %>
+      </td>
+    </tr>
+  </tbody>
+</table>

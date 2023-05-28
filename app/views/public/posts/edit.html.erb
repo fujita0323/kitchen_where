@@ -1,0 +1,22 @@
+<h4>レビュー編集</h4>
+  <%= form_with model: @post, url: post_path(@post.id), method: :PATCH do |f| %>
+      <table>
+        <tbody>
+			<tr>
+				<td>写真</td>
+				<td><%= f.file_field :image %></td>
+			</tr>
+			<tr>
+				<td>使用感・レビュー</td>
+				<td><%= f.text_area :review %></td>
+			</tr>
+			<tr>
+				<td>評価</td>
+				<td><%= f.hidden_field :star, id: :review_star %></td>
+			</tr>
+        </tbody>
+      </table>
+
+<%= f.submit '編集内容を保存', class: "btn btn-success" %>
+<%= link_to "削除する", kitchen_post_path, class: "btn btn-danger" %>
+<% end %>

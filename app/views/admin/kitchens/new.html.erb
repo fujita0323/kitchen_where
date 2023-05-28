@@ -1,0 +1,21 @@
+<h2>キッチン新規登録</h2>
+<%= form_with model: @kitchen, url: admin_kitchens_path, method: :post do |f| %>
+
+<p>ジャンル</p>
+<%= f.label :genre_id, "ジャンル" %>
+<%= f.collection_select :genre_id, Genre.all, :id, :name %>
+
+<p>メーカー</p>
+<%= f.label :maker_id, "メーカー" %>
+<%= f.collection_select :maker_id, Maker.all, :id, :name %>
+
+<p>画像</p>
+<%= f.file_field :image, accept:'image/*' %>
+<p>商品名</p>
+<%= f.text_field :name %>
+<p>商品説明</p>
+<%= f.text_area :introduction %>
+<p>税抜価格</p>
+<%= f.text_field :price %> 円
+<%= f.submit "新規登録", class:"btn btn-success" %>
+<% end %>

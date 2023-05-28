@@ -1,6 +1,6 @@
 require "test_helper"
 
-class KitchinTest < ActiveSupport::TestCase
+class EvaluationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

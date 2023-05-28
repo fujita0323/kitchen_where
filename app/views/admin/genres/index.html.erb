@@ -1,0 +1,21 @@
+<h2>ジャンル新規登録</h2>
+<%= render 'form', genre: @genre, url: admin_genres_path, submit: '登録' %>
+
+<h2>キッチンジャンル一覧</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>ジャンル名</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @genres.each do |genre| %>
+				<!--飛ぶ先を指定する-->
+					<tr>
+						<td><%= link_to genre.name, admin_genres_path(genre_id: genre.id) %></td>
+						<td><%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-success" %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>

@@ -1,0 +1,25 @@
+<h2>キッチン一覧</h2>
+<%= link_to "新規登録", new_admin_kitchen_path, class:"btn btn-primary" %>
+        <table>
+            <thead>
+                <tr>
+                    <th>写真</th>
+                    <th>商品名</th>
+                    <th>税抜価格</th>
+		        	<th>ジャンル</th>
+		        	<th>メーカー</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <% @kitchens.each do |kitchen| %>
+            <tr>
+                <td><%= image_tag kitchen.image %></td>
+            　　<td><u><%= link_to kitchen.name, admin_kitchen_path(kitchen), style: "color: black;" %></u></td>
+                <td><%= kitchen.price %>円</td>
+				<td><%= link_to kitchen.genre.name, admin_kitchens_path(genre_id: kitchen.genre_id) %></td>
+				<td><%= link_to kitchen.maker.name, admin_kitchens_path(maker_id: kitchen.maker_id) %></td>
+            </tr>
+            <% end %>
+            </tbody>
+        </table>
