@@ -1,32 +1,42 @@
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Kitchin Detail</h1>
+      <p class="lead text-muted">
+        セレクトした「Kitchin」の詳細ページです<br>
+      </p>
+      </p>
+    </div>
+  </section>
 
-<section class="inner">
-	<h2 class="section-ttl">キッチン詳細</h2>
-	<table class="customer_info mb3">
-		<thead>
-			<th></th>
-			<th></th>
-			<th></th>
-		</thead>
-		<tbody>
+  <div class="row">
+   <div class="col-12">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+       </thead>
+        <tbody>
 			<tr>
-				<td>メーカー</td>
-				<td><%= @kitchen.maker.name %></td>
+			  <td class="text-center align-middle">
+				<%= @kitchen.maker.name %>
+			  </td>
 			</tr>
 			<tr>
-				<td>ジャンル</td>
-				<td><%= @kitchen.genre.name %></td>
+			  <td class="text-center align-middle">
+				<%= @kitchen.genre.name %>
+			  </td>
 			</tr>
 			<tr>
-				<td>画像</td>
-				<td><%= image_tag @kitchen.image, size: "200x200" %></td>
+			  <td class="align-middle text-center">
+				<%= image_tag @kitchen.image, size: "300x300"%>
+			  </td>
 			</tr>
 			<tr>
-				<td>価格</td>
-				<td><%= @kitchen.price %></td>
+		      <td class="text-center align-middle">
+				<%= @kitchen.price %>~
+			  </td>
 			</tr>
 			<tr>
-				<td>評価</td>
-				<td><%#= @kitchen.posts.average(:star) %>
+				<td class="text-center align-middle">総合評価
+				<%#= @kitchen.posts.average(:star) %>
 
          <div id="post_raty_average"></div>
 <!--newページのやつ-->
@@ -47,27 +57,54 @@
 			</tr>
 		</tbody>
 	</table>
-	<div class="flex">
-	  <%= link_to "レビュー", new_kitchen_post_path(@kitchen), class: "btn btn-primary ml2" %>
+   </div>
+  </div>
 
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Review</h1>
+      <p class="lead text-muted">
+        こちらのキッチンへの投稿
+      </p>
+    </div>
+  </section>
 
+  <div class="row">
+   <div class="col-12">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+       </thead>
+         <tbody>
+    <% @kitchen.posts.each do |post| %>
 
-		<h1>レビュー投稿一覧</h1>
+             <tr>
+              <td class="align-middle text-center">
+                <%= post.customer.nickname %>
+               <%= image_tag post.customer.profile_image, size: "100x100" %>
+             </td>
+             </tr>
+             <tr>
+              <td class="align-middle">
+              </td>
+              </tr>
+              <tr>
+              <td class="align-middle text-center">
+                <%= link_to kitchen_post_path(@kitchen.id,post.id) do %>
+                <%= image_tag post.image, size: "300x300" %>
+                <% end %>
+              </td>
+              </tr>
+              <tr>
+              <td class="text-center align-middle">
+                <%= post.review %>
+              </td>
+              </tr>
+              <tr>
+              <td class="text-center align-middle">
+              <p id="post_raty_<%= post.id %>"></p>
+              </td>
+              </tr>
 
-  <% @kitchen.posts.each do |post| %>
-
-  <p>ニックネーム</p>
-  <span><%= post.customer.nickname %></span>
-  <p>キッチン写真</p>
-  <span><%= image_tag post.customer.profile_image %></span>
-  <p>プロフィール写真</p>
-  <span><%= image_tag post.image %></span>
-  <p><%= link_to "使用感・レビュー", kitchen_post_path(@kitchen.id,post.id) %></p>
-  <span><%= post.review %></span>
-  <p>評価</p>
-  <div id="post_raty_<%= post.id %>"></div>
-
-<!--newページのやつ-->
  <script>
 	var elem = document.getElementById('post_raty_<%= post.id %>');
 	var opt = {
@@ -82,5 +119,10 @@
 </script>
 
 <% end %>
-	</div>
-</section>
+  <div class="row mt-3">
+    <div class="col-12 text-center">
+	  <%= link_to "レビュー", new_kitchen_post_path(@kitchen), class: "btn btn-primary ml2" %>
+    </div>
+  </div>
+        </tbody>
+      </table>

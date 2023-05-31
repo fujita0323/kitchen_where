@@ -1,13 +1,17 @@
-<h2>新規会員登録</h2>
-
-<%= form_with model: @customer, url: customer_registration_path do |f| %>  
-<%= render "public/shared/error_messages", resource: resource %>
-
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h3>新規会員登録</h3>
+    </div>
+  </section>
+  
+  <body class="text-center">
+   <%= form_with model: @customer, url: customer_registration_path do |f| %>  
+   <%= render "public/shared/error_messages", resource: resource %>
+    <form class="form-signin">
   <div class="field">
     <%= f.label :nickname, "ニックネーム" %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "email" %>
-  </div>
-
+    <%= f.text_field :nickname, autofocus: true, autocomplete: "email" %>  </div>
+  
   <div class="field">
     <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -25,11 +29,11 @@
     <%= f.label :password_confirmation, "パスワード(確認用)" %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
+<%= f.submit '新規登録', class: "btn btn-primary ml2" %>
+<p class="mt-5 mb-3 text-muted">&copy; 2023-2023</p>
+</form>
 <% end %>
+</body>
 
   <h2 class="section-ttl">既に登録済みの方</h2>
   <p><%= link_to "こちら", new_customer_session_path, class: "underline" %>からログインしてください。</p>

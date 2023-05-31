@@ -6,11 +6,12 @@ class Public::CommentsController < ApplicationController
   end
 
   def create
+    @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
     @comment.customer_id = current_customer.id
-    @comment.post_id = params[:post_id]
+    @comment.post_id = @post.id
     @comment.save!
-    redirect_to kitchen_post_path(params[:comment][:kitchen_id],params[:post_id])
+    redirect_to kitchen_post_path(kitchen_id: @post.kitchen_id, id: @post.id)
   end
 
   def show

@@ -1,5 +1,11 @@
-<h2>Log in</h2>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h3>Log in</h3>
+      こちらは管理者専用ページです
+    </div>
+  </section>
 
+<body class="text-center">
 <%= form_with model: @admin, url: admin_session_path do |f| %>  
 <%= render "admin/shared/error_messages", resource: resource %>
   <div class="field">
@@ -20,7 +26,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: "btn btn-primary ml2" %>
   </div>
 <% end %>
 

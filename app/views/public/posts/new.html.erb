@@ -1,18 +1,48 @@
-<h1>レビュー投稿フォーム</h1>
-  <%= form_with model: [@kitchen,@post] do |f| %>
-    <h4>画像</h4>
-      <%= f.file_field :image, accept: "image/*" %>
-    <h4>レビュー</h4>
-    <%= f.text_field :review %>
-    <h4>評価</h4>
-    <%= f.hidden_field :kitchen_id %>
-    <%= f.submit '投稿' %>
-    <p>評価:</P>
-    <div id="post_raty"></div>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Review</h1>
+      <p class="lead text-muted">
+        あなたのキッチンをレビューして共有しましょう<br>
+      </p>
+      </p>
+    </div>
+  </section>
+  
+  
+  <body class="bg-light">
+      <%= form_with model: [@kitchen,@post] do |f| %>
+    <div class="container">
+  <div class="row">
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Review</h4>
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="kitchen-img">キッチン写真</label>
+              <%= f.file_field :image, accept: "image/*", required: true %>
+          </div>
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="review">レビュー</label>
+              <%= f.text_area :review, required: true %>
+            </div>
+          </div>
+    <div class="col-md-9 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">評価</label>
+             <%= f.hidden_field :kitchen_id %>
+             <div id="post_raty">
+             </div>
+            </div>
+          </div>
+         <%= f.submit '投稿', class: "btn btn-primary ml2" %>
+        <% end %>
+      </body>
 
-    <!--<%#= f.hidden_field :evaluation, id: :post_raty %>-->
-  </div>
-  <% end %>
 
 <script>
 var elem = document.getElementById('post_raty');

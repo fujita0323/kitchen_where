@@ -8,6 +8,9 @@
             <%= link_to "top", root_path, class:"btn btn-outline-secondary" %>
           </li>
           <li style="margin: 15px;">
+            <%= link_to "about", about_path, class:"btn btn-outline-secondary" %>
+          </li>
+          <li style="margin: 15px;">
             <%= link_to "マイページ", customer_path(current_customer), class:"btn btn-outline-secondary" %>
           </li>
           <li style="margin: 15px;">
@@ -20,6 +23,9 @@
         <% else %>
           <li style="margin: 15px;">
             <%= link_to "top", root_path, class:"btn btn-outline-secondary" %>
+          </li>
+          <li style="margin: 15px;">
+            <%= link_to "about", about_path, class:"btn btn-outline-secondary" %>
           </li>
           <li style="margin: 15px;">
             <%= link_to "キッチン一覧", kitchens_path, class:"btn btn-outline-secondary" %>

@@ -1,6 +1,15 @@
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>キッチン登録</h1>
+      <p class="lead text-muted">
+      </p>
+    </div>
+  </section>
+
+
 <h2>キッチン一覧</h2>
 <%= link_to "新規登録", new_admin_kitchen_path, class:"btn btn-primary" %>
-        <table>
+        <table class="table table-bordered"> 
             <thead>
                 <tr>
                     <th>写真</th>
@@ -14,7 +23,7 @@
             <tbody>
             <% @kitchens.each do |kitchen| %>
             <tr>
-                <td><%= image_tag kitchen.image %></td>
+                <td><%= image_tag kitchen.image, size: "100x100" %></td>
             　　<td><u><%= link_to kitchen.name, admin_kitchen_path(kitchen), style: "color: black;" %></u></td>
                 <td><%= kitchen.price %>円</td>
 				<td><%= link_to kitchen.genre.name, admin_kitchens_path(genre_id: kitchen.genre_id) %></td>
@@ -23,3 +32,4 @@
             <% end %>
             </tbody>
         </table>
+        

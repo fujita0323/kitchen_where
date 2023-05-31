@@ -1,23 +1,52 @@
-<h4>会員情報編集</h4>
-  <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
-      <table>
-        <tbody>
-          <tr>
-            <td>写真</td>
-          <td><%= f.file_field :profile_image %></td>
-          <h5>※50MB以下</h5>
-          </tr>
-          <tr>
-            <td>ニックネーム</td>
-            <td><%= f.text_field :nickname %></td>
-          </tr>
-          <tr>
-            <td>メールアドレス</td>
-            <td><%= f.text_field :email %></td>
-          </tr>
-        </tbody>
-      </table>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>User Edit</h1>
+      <p class="lead text-muted">
+        会員情報の編集ができます<br>
+      </p>
+      </p>
+    </div>
+  </section>
 
-<%= f.submit '編集内容を保存', class: "btn btn-success" %>
-<%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %>
-<% end %>
+  <body class="bg-light">
+  <%= form_with model: @customer, url: customer_path(@customer.id), method: :patch do |f| %>
+     <div class="container">
+      <h4 class="mb-3">Edit</h4>
+       <div class="col-md-8 order-md-1">
+         <form class="needs-validation" novalidate>
+          <div class="row">
+           <div class="col-md-6 mb-3">
+            <label for="kitchen-img">プロフィール画像</label>
+              <%= f.file_field :profile_image %>
+            </div>
+           </div>
+          </form>
+         </div>
+
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+              <%= f.text_field :nickname %>
+            <label for="review">ニックネーム</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <%= f.text_field :email %>
+            <label for="evaluation">メールアドレス</label>
+          </div>
+        </div>
+      </form>
+    </div>
+
+         <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+         <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger" %>
+  </div>
+         <% end %>
+</body>

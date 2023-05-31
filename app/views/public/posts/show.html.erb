@@ -1,47 +1,85 @@
-<section class="inner">
-  <% if flash[:notice] %>
-    <p class="text-active"><%= flash[:notice] %></p>
-  <% end %>
-	<h2 class="section-ttl">レビュー詳細</h2>
-	<table class="customer_info mb3">
-		<thead>
-			<th></th>
-			<th></th>
-			<th></th>
-		</thead>
-		<tbody>
-			<tr>
-				<td>写真</td>
-				<td><%= image_tag @post.customer.profile_image %></td>
-			</tr>
-			<tr>
-				<td>写真</td>
-				<td><%= image_tag @post.image %></td>
-			</tr>
-			<tr>
-				<td>レビュー</td>
-				<td><%= @post.review %></td>
-			</tr>
-			<tr>
-				<td>評価</td>
-         <td id="post_raty_<%= @post.id %>"></td>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Review Detail</h1>
+      <p class="lead text-muted">
+        投稿されたレビューへのコメントが可能です<br>
+        <br>
+      </p>
+      </p>
+    </div>
+  </section>
 
- <script>
-	var elem = document.getElementById('post_raty_<%= @post.id %>');
-	var opt = {
-	    starOn: "<%= asset_path('star-on.png') %>",
-	    starOff: "<%= asset_path('star-off.png') %>",
-	    starHalf: "<%= asset_path('star-half.png') %>",
-	    half      : false,
-	    readOnly: true,
-	    score: <%= @post.star %>,
-	  };
-	  raty(elem,opt);
-</script>        
+  <div class="row">
+   <div class="col-12">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+       </thead>
+        <tbody>
+  <div class="row">
+   <div class="col-12">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+       </thead>
+        <tbody>
+			<tr>
+			  <td class="text-center align-middle">
+				<%= @kitchen.maker.name %>
+			  </td>
 			</tr>
+			<tr>
+			  <td class="text-center align-middle">
+				<%= @kitchen.genre.name %>
+			  </td>
+			</tr>
+			<tr>
+			  <td class="align-middle">
+				<%= image_tag @post.image, size: "100x100", class: "bd-placeholder-img bd-placeholder-img-lg card-img rounded shadow-lg" %>
+			  </td>
+			</tr>
+			<tr>
+		      <td class="text-center align-middle">
+				<%= @kitchen.price %>~
+			  </td>
+			</tr>
+			<tr>
+				<td class="text-center align-middle">総合評価
+				<%#= @kitchen.posts.average(:star) %>
+         <div id="post_raty_average"></div>
+          <script>
+          	var elem = document.getElementById('post_raty_average');
+	          var opt = {
+	          starOn: "<%= asset_path('star-on.png') %>",
+	          starOff: "<%= asset_path('star-off.png') %>",
+	          starHalf: "<%= asset_path('star-half.png') %>",
+	          half      : false,
+	          readOnly: true,
+	          score: <%= @kitchen.posts.average(:star) %>,
+	          };
+	          raty(elem,opt);
+         </script>
+				</td>
+			</tr>
+			<tr>
+		      <td class="text-center align-middle">
+		      <% if @post.customer == current_customer %>
+		      <%= link_to "編集", edit_kitchen_post_path, class: "btn btn-primary" %>
+		      <%= link_to "削除", kitchen_post_path(@post.kitchen,@post), class: "btn btn-danger", method: :delete %>
+	      	<% end %>
+			  </td>
+			</tr>
+			<tr>
 		</tbody>
-		<tfoot>
-			<% @post.comments.each do |comment| %>
+	</table>
+ </div>
+</div>
+
+  <div class="row">
+   <div class="col-12">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+       </thead>
+        <tbody>
+		    	<% @post.comments.each do |comment| %>
 			<tr>
         <td>
 				<%= form_with url: post_comment_path(@post.id,comment.id), method: :delete do |f| %>
@@ -49,22 +87,23 @@
         <%= f.submit '削除' %>
 				<% end %>
         </td>
-        <td><%= comment.customer.nickname %></td>
-        <td><%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.reaction %></td>
       </tr>
+			<tr>
+			  <td class="text-center align-middle">
+				<%= comment.created_at.strftime('%Y/%m/%d') %>
+        <%= comment.customer.nickname %>			  
+        </td>
+			</tr>
+			<tr>
+			  <td class="text-center align-middle">
+        <%= comment.reaction %>
+        </td>
+			</tr>
       <% end %>
-      <tr>
-      	<td><%= link_to "コメント", new_post_comment_path(@post.id,kitchen_id: params[:kitchen_id]), class: "btn btn-primary" %></td>
+			<tr>
+        <td>
+        <%= link_to "コメント", new_post_comment_path(@post.id,kitchen_id: params[:kitchen_id]), class: "btn btn-primary" %>
+        </td>
       </tr>
- </tfoot>
+   </tfoot>
 	</table>
-	<div class="flex">
-		<% if @post.customer == current_customer %>
-		<%= link_to "編集", edit_kitchen_post_path, class: "btn btn-primary" %>
-		<%= link_to "削除", kitchen_post_path(@post.kitchen,@post), class: "btn btn-danger", method: :delete %>
-		<% end %>
-	</div>
-
-
-
-</section>

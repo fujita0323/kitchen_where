@@ -1,22 +1,42 @@
-<h4>レビュー編集</h4>
-  <%= form_with model: @post, url: post_path(@post.id), method: :PATCH do |f| %>
-      <table>
-        <tbody>
-			<tr>
-				<td>写真</td>
-				<td><%= f.file_field :image %></td>
-			</tr>
-			<tr>
-				<td>使用感・レビュー</td>
-				<td><%= f.text_area :review %></td>
-			</tr>
-			<tr>
-				<td>評価</td>
-				<td><%= f.hidden_field :star, id: :review_star %></td>
-			</tr>
-        </tbody>
-      </table>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Review Edit</h1>
+      <p class="lead text-muted">
+        投稿の編集ができます<br>
+      </p>
+      </p>
+    </div>
+  </section>
 
-<%= f.submit '編集内容を保存', class: "btn btn-success" %>
-<%= link_to "削除する", kitchen_post_path, class: "btn btn-danger" %>
-<% end %>
+  <body class="bg-light">
+  <%= form_with model: @post, url: post_path(@post.id), method: :PATCH do |f| %>
+    <div class="container">
+  <div class="row">
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Edit</h4>
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="kitchen-img">キッチン写真</label>
+              <%= f.file_field :image %>
+          </div>
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="review">レビュー</label>
+              <%= f.text_area :review %>
+            </div>
+          </div>
+    <div class="col-md-9 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">評価</label>
+            <%= f.hidden_field :star, id: :review_star %>
+             </div>
+            </div>
+          </div>
+         <%= f.submit '編集内容を保存', class: "btn btn-success" %>
+        <% end %>
+      </body>

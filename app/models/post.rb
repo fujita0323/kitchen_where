@@ -9,6 +9,9 @@ class Post < ApplicationRecord
 
  has_one_attached :image
 
+   validates :star, presence: true
+   validates :image, presence: true
+   validates :review, presence: true
 
   def profile_image
     unless image.attached?

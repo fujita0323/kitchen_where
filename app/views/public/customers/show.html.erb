@@ -1,31 +1,89 @@
-<h2>マイページ</h2>
-<h5>登録情報</h5>
-<%= link_to "編集する", customers_information_edit_path, class: "btn btn-success" %>
-    <table>
-      <thead>
-        <tr>
-          <td>プロフィール画像</td>
-          <td><%= image_tag @customer.get_profile_image %></td>
-        </tr>
-        <tr>
-          <td>ニックネーム</td>
-          <td><%= @customer.nickname %></td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= @customer.email %></td>
-        </tr>
-      </thead>
-       <tbody>
-     <% @customer.posts.each do |post| %>
-      <table class="table table-borderless">
-        <tr>
-          <td>投稿一覧</td>
-			　	<td><%= image_tag post.image %></td>
-          <td><%= post.review %></td>
-         <td id="post_raty_<%= post.id %>"></td>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>My Page</h1>
+      <p class="lead text-muted">
+        登録情報のご確認<br>
+      </p>
+    </div>
+  </section>
 
-<!--newページのやつ-->
+  <body class="bg-light">
+    <div class="container">
+  <div class="row">
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">登録情報</h4>
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="kitchen-img">プロフィール画像</label>
+              <%= image_tag @customer.get_profile_image %>
+          </div>
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="review">ニックネーム</label>
+              <td><%= @customer.nickname %></td>
+            </div>
+          </div>
+    <div class="col-md-9 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">メールアドレス</label>
+             <%= @customer.email %>
+             <div id="post_raty">
+             </div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    <%= link_to "編集する", customers_information_edit_path, class: "btn btn-success" %>
+   </body>
+
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>My Page</h1>
+      <p class="lead text-muted">
+        登録情報のご確認<br>
+      </p>
+    </div>
+  </section>
+
+  <div class="row">
+   <div class="col-12">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+       </thead>
+         <tbody>
+           <% @customer.posts.each do |post| %>
+
+             <tr>
+              <td class="align-middle text-center">
+                <%= link_to kitchen_post_path(kitchen_id: post.kitchen_id, id: post.id) do %>
+                <%= image_tag post.image, size:"300x300" %>
+                <% end %>
+             </td>
+             </tr>
+             <tr>
+              <td class="align-middle">
+              </td>
+              </tr>
+              <tr>
+              <td class="text-center align-middle">
+                <%= post.review %>
+              </td>
+              </tr>
+              <tr>
+              <td class="text-center align-middle">
+              <p id="post_raty_<%= post.id %>"></p>
+              </td>
+              </tr>
+
  <script>
 	var elem = document.getElementById('post_raty_<%= post.id %>');
 	var opt = {
@@ -37,8 +95,8 @@
 	    score: <%= post.star %>,
 	  };
 	  raty(elem,opt);
-</script>        
-        </tr>
+</script>
+
+<% end %>
       </tbody>
     </table>
-    <% end %>

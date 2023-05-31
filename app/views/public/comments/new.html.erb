@@ -1,7 +1,27 @@
-<h1>コメント投稿フォーム</h1>
-  <%= form_with model: [@post,@comment],url: post_comments_path(@post.id) do |f| %>
-    <h4>コメント</h4>
-    <%= f.text_area :reaction %>
-    <%= f.hidden_field :kitchen_id, value: params[:kitchen_id] %>
-    <%= f.submit '投稿' %>
-  <% end %>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>Comment</h1>
+      <p class="lead text-muted">
+        聞きたいこと・感じたことをコメントしましょう<br>
+      </p>
+      </p>
+    </div>
+  </section>
+
+  <body class="bg-light">
+   <%= form_with model: [@post,@comment],url: post_comments_path(@post.id) do |f| %>    <div class="container">
+  <div class="row">
+    <div class="col-md-8 order-md-1">
+      <h4 class="mb-3">Comment</h4>
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="kitchen-img">コメント記入</label>
+              <%= f.text_area :reaction, required: true %>
+             </div>
+            </div>
+          </div>
+         </div>
+         <%= f.submit '投稿', class: "btn btn-primary ml2" %>
+        <% end %>
+      </body>
