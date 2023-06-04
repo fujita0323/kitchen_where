@@ -1,57 +1,56 @@
   <section class="jumbotron text-center">
     <div class="container">
       <h1>Kitchin's Found</h1>
-      <p class="lead text-muted">
-        あなたの思い描く「Kitchin」はどのようなキッチンですか？<br>
-        ここではイメージに合う様々なキッチンをご紹介します
-      </p>
-      </p>
+        <p class="lead text-muted">
+          あなたの思い描く「Kitchin」はどのようなキッチンですか？<br>
+          ここではイメージに合う様々なキッチンをご紹介します
+        </p>
     </div>
   </section>
-<div class="search-form">
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
-    <%= f.collection_select :genre_id, Genre.all, :id, :name, options = { include_blank: true } %>
-    <%= f.collection_select :maker_id, Maker.all, :id, :name, options = { include_blank: true } %>
-    <%= f.text_field :keyword, value: @keyword %>
-    <%= f.submit "検索" %>
-  <% end %>
-</div>
-<div class="row">
-  <% @kitchens.each do |kitchen| %>
-  <div class="album py-5 bg-light card col-md-3">
-    <div class="container">
-      <div class="card-deck">
-        <!--<div class=" col-md-4">-->
+  
+  <div class="search-form">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, options = { include_blank: true } %>
+      <%= f.collection_select :maker_id, Maker.all, :id, :name, options = { include_blank: true } %>
+      <%= f.text_field :keyword, value: @keyword %>
+      <%= f.submit "検索" %>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <% @kitchens.each do |kitchen| %>
+      <div class="album py-5 bg-light card col-md-3">
+        <div class="container">
+          <div class="card-deck">
+          <!--<div class=" col-md-4">-->
 
-          <div class="card">
-            <div class="mb-4 shadow-sm">
-              <%= link_to kitchen_path(kitchen) do %>
-                <%= image_tag kitchen.image, size: "300x300" %>
-              <% end %>
-            </div>
+            <div class="card">
+              <div class="mb-4 shadow-sm">
+                <%= link_to kitchen_path(kitchen) do %>
+                  <%= image_tag kitchen.image, size: "300x300" %>
+                <% end %>
+              </div>
           <!--</div>-->
 
-          <div class="bg-secondary">
-            <div class="card-body">
-              <p class="card-text">
-                ◇<%= kitchen.maker.name %>
-                □<%= kitchen.genre.name %></br>
-                <%= kitchen.name %>
-                <small>
-                  
-                  <%= kitchen.price %>~
-                </small>
-              </p>
+            <div class="bg-secondary">
+              <div class="card-body">
+                <p class="card-text">
+                  ◇<%= kitchen.maker.name %>
+                  □<%= kitchen.genre.name %></br>
+                  <%= kitchen.name %>
+                    <small>
+                      ¥<%= kitchen.price %>~
+                    </small>
+                </p>
+              </div>
             </div>
-          </div>
          </div>
 
         <!--</div>-->
+          </div>
+        </div>
       </div>
-    </div>
+
+
+    <% end %>
   </div>
-
-
-  <% end %>
-</div>
-</main>

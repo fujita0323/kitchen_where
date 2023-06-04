@@ -1,5 +1,8 @@
-<section class="inner">
-	<h2 class="section-ttl">メーカー編集</h2>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>メーカー編集</h1>
+    </div>
+  </section>
+  
   <%= render 'form', maker: @maker, url: admin_maker_path(@maker), submit: '更新' %>
-</section>
-<%= link_to '削除', admin_maker_path, method: :delete %>
+  <%= link_to '削除', admin_maker_path, method: :delete %>

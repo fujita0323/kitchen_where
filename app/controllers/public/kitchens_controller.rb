@@ -28,12 +28,12 @@ class Public::KitchensController < ApplicationController
     end
   end
 
-
-
   private
+
   def customer_params
     params.require(:keyword).permit(:genre_id, :maker_id)
   end
+
   def customer_params
     params.require(:kitchen).permit(:name, :introduction, :price, :post_id)
   end

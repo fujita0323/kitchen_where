@@ -31,10 +31,10 @@
           </td>
         </tr>
         <tr>
-          <td>税込価格<br>(税抜価格)</td>
+          <td style="width:30%">価格</td>
           <td>
-<%= @kitchen.with_tax_price %>(<%= @kitchen.price %>)円
-</td>
+          ¥<%= @kitchen.price %>~
+          </td>
         </tr>
         <tr>
           <td>

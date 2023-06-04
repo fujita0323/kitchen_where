@@ -5,6 +5,10 @@ class Admin::GenresController < ApplicationController
     @genres = Genre.all
   end
 
+  def edit
+    @genre = Genre.find(params[:id])
+  end
+
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
@@ -15,10 +19,6 @@ class Admin::GenresController < ApplicationController
     end
   end
 
-  def edit
-    @genre = Genre.find(params[:id])
-  end
-
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
@@ -27,7 +27,7 @@ class Admin::GenresController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     genre = Genre.find(params[:id])
     genre.destroy
@@ -44,4 +44,3 @@ class Admin::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
   end
 end
-

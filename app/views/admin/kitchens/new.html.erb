@@ -1,21 +1,79 @@
-<h2>キッチン新規登録</h2>
-<%= form_with model: @kitchen, url: admin_kitchens_path, method: :post do |f| %>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>キッチン新規登録</h1>
+    </div>
+  </section>
 
-<p>ジャンル</p>
-<%= f.label :genre_id, "ジャンル" %>
-<%= f.collection_select :genre_id, Genre.all, :id, :name %>
-
-<p>メーカー</p>
-<%= f.label :maker_id, "メーカー" %>
-<%= f.collection_select :maker_id, Maker.all, :id, :name %>
-
-<p>画像</p>
-<%= f.file_field :image, accept:'image/*', required: true %>
-<p>商品名</p>
-<%= f.text_field :name, required: true %>
-<p>商品説明</p>
-<%= f.text_area :introduction, required: true %>
-<p>税抜価格</p>
-<%= f.text_field :price, required: true %> 円
-<%= f.submit "新規登録", class:"btn btn-success" %>
-<% end %>
+  <body class="bg-light">
+    <%= form_with model: @kitchen, url: admin_kitchens_path, method: :post do |f| %>
+      <div class="container">
+          <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">キッチン情報入力</h4>
+              <form class="needs-validation" novalidate>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="kitchen-img">ジャンル</label>
+                      <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+                  </div>
+                </div>
+              </form>
+        </div>
+        
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="review">メーカー</label>
+              <%= f.collection_select :maker_id, Maker.all, :id, :name %>
+          </div>
+        </div>
+      </form>
+    </div>
+        
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">画像</label>
+             <%= f.file_field :image, accept:'image/*', required: true %>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">商品名</label>
+             <%= f.text_field :name, required: true %>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">商品説明</label>
+             <%= f.text_area :introduction, required: true %>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">価格</label>
+             ¥<%= f.text_field :price, required: true %> 
+          </div>
+        </div>
+      </form>
+    </div>    
+     <%= f.submit "新規登録", class:"btn btn-success" %>
+      </div>
+    <% end %>
+  </body>

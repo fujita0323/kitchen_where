@@ -1,102 +1,103 @@
   <section class="jumbotron text-center">
     <div class="container">
       <h1>My Page</h1>
-      <p class="lead text-muted">
-        登録情報のご確認<br>
-      </p>
+        <p class="lead text-muted">
+          登録情報のご確認<br>
+        </p>
     </div>
   </section>
 
   <body class="bg-light">
     <div class="container">
-  <div class="row">
-    <div class="col-md-8 order-md-1">
-      <h4 class="mb-3">登録情報</h4>
-      <form class="needs-validation" novalidate>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="kitchen-img">プロフィール画像</label>
-              <%= image_tag @customer.get_profile_image, size: "100x100" %>
-          </div>
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">登録情報</h4>
+            <form class="needs-validation" novalidate>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="kitchen-img">プロフィール画像</label>
+                    <%= image_tag @customer.get_profile_image, size: "100x100" %>
+                </div>
+              </div>
+            </form>
+       </div>
+        
     <div class="col-md-8 order-md-1">
       <form class="needs-validation" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="review">ニックネーム</label>
               <td><%= @customer.nickname %></td>
-            </div>
-          </div>
+           </div>
+         </div>
+      </form>
+    </div>
+    
     <div class="col-md-9 order-md-1">
       <form class="needs-validation" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="evaluation">メールアドレス</label>
-             <%= @customer.email %>
-             <div id="post_raty">
-             </div>
-            </div>
-           </div>
+              <%= @customer.email %>
+                <div id="post_raty">
+                </div>
           </div>
-         </div>
         </div>
-       </div>
-      </div>
-     </div>
-    <%= link_to "編集する", customers_information_edit_path, class: "btn btn-success" %>
-   </body>
+      </form>
+    </div>
+    </div>
+      <%= link_to "編集する", customers_information_edit_path, class: "btn btn-success" %>
+  </body>
 
   <section class="jumbotron text-center">
     <div class="container">
-      <h1>My Page</h1>
-      <p class="lead text-muted">
-        登録情報のご確認<br>
-      </p>
+      <h1>投稿一覧</h1>
+        <p class="lead text-muted">
+          あなたのレビュー投稿情報<br>
+        </p>
     </div>
   </section>
 
   <div class="row">
-   <div class="col-12">
-    <table class="table table-bordered">
-      <thead class="thead-light">
-       </thead>
-         <tbody>
-           <% @customer.posts.each do |post| %>
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          </thead>
+            <tbody>
+              <% @customer.posts.each do |post| %>
 
-             <tr>
-              <td class="align-middle text-center">
-                <%= link_to kitchen_post_path(kitchen_id: post.kitchen_id, id: post.id) do %>
-                <%= image_tag post.image, size:"100x100" %>
-                <% end %>
-             </td>
-             </tr>
-             <tr>
-              <td class="align-middle">
-              </td>
-              </tr>
-              <tr>
-              <td class="text-center align-middle">
-                <%= post.review %>
-              </td>
-              </tr>
-              <tr>
-              <td class="text-center align-middle">
-              <p id="post_raty_<%= post.id %>"></p>
-              </td>
-              </tr>
+                <tr>
+                  <td class="align-middle text-center">
+                    <%= link_to kitchen_post_path(kitchen_id: post.kitchen_id, id: post.id) do %>
+                    <%= image_tag post.image, size:"100x100" %>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center align-middle">
+                    <%= post.review %>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text-center align-middle">
+                    <p id="post_raty_<%= post.id %>"></p>
+                  </td>
+                </tr>
 
- <script>
-	var elem = document.getElementById('post_raty_<%= post.id %>');
-	var opt = {
-	    starOn: "<%= asset_path('star-on.png') %>",
-	    starOff: "<%= asset_path('star-off.png') %>",
-	    starHalf: "<%= asset_path('star-half.png') %>",
-	    half      : false,
-	    readOnly: true,
-	    score: <%= post.star %>,
-	  };
-	  raty(elem,opt);
-</script>
+                <script>
+                  	var elem = document.getElementById('post_raty_<%= post.id %>');
+                   	var opt = {
+	                  starOn: "<%= asset_path('star-on.png') %>",
+	                  starOff: "<%= asset_path('star-off.png') %>",
+	                  starHalf: "<%= asset_path('star-half.png') %>",
+	                  half      : false,
+	                  readOnly: true,
+	                  score: <%= post.star %>,
+	                };
+	                raty(elem,opt);
+                </script>
 
-<% end %>
-      </tbody>
-    </table>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

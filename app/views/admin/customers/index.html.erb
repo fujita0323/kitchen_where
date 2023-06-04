@@ -1,5 +1,10 @@
-<h2><会員一覧></h2>
-<table>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>会員一覧</h1>
+    </div>
+  </section>
+
+<table class="table table-bordered"> 
   <thead>
     <tr>
       <th>会員ID</th>
@@ -14,9 +19,9 @@
     <tr>
       <td><%= customer.id %></td>
       <td>
-      <%= link_to admin_customer_path(customer) do %>
-      <%= customer.nickname %>
-      <% end %>
+        <%= link_to admin_customer_path(customer) do %>
+        <%= customer.nickname %>
+        <% end %>
       </td>
       <td><%= customer.email %></td>
       <td>

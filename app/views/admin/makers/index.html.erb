@@ -1,12 +1,17 @@
-<h2>メーカー新規登録</h2>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>メーカー</h1>
+    </div>
+  </section>
+
+<h2><メーカー新規登録></h2>
 <%= render 'form', maker: @maker, url: admin_makers_path, submit: '登録' %>
 
-<h2>メーカー一覧</h2>
+<h2><メーカー一覧></h2>
 		<table>
 			<thead>
 				<tr>
-					<th>ジャンル名</th>
-					<th>状態</th>
+					<th>メーカー名</th>
 					<th></th>
 				</tr>
 			</thead>

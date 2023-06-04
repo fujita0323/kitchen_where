@@ -1,3 +1,3 @@
 class Genre < ApplicationRecord
-    has_many :kitchens, dependent: :destroy
+  has_many :kitchens, dependent: :destroy
 end

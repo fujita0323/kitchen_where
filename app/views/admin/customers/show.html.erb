@@ -1,40 +1,64 @@
-<h2><%= @customer.nickname %>さんの会員情報</h2>
-<table>
-  <tbody>
-    <tr>
-      <th>会員ID</th>
-      <td><%= @customer.id %></td>
-    </tr>
-    <tr>
-      <th>ニックネーム</th>
-      <td><%= @customer.nickname %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= @customer.email %></td>
-    </tr>
-    <tr>
-      <th>投稿一覧</th>
-      <% @customer.posts.each do |post| %>
-        <td><%= post.review %> <%= link_to '削除', admin_post_path(post), method: :delete %></td>
-      <% end %>
-    </tr>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>会員詳細</h1>
+        <p class="lead text-muted">
+          <%= @customer.nickname %>さんの会員情報<br>
+        </p>
+    </div>
+  </section>
 
-    <tr>
-      <th>会員ステータス</th>
-      <td>
-        <% if @customer.is_deleted %>
-           <span>退会</span>
-        <% else %>
-          <span>有効</span>
-        <% end %>
-      </td>
-    </tr>
-    <tr>
-      <td>
+  <body class="bg-light">
+    <div class="container">
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">登録情報</h4>
+            <form class="needs-validation" novalidate>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="kitchen-img">会員ID</label>
+                    <%= @customer.id %>
+                </div>
+              </div>
+            </form>
+       </div>
+        
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="review">ニックネーム</label>
+              <td><%= @customer.nickname %></td>
+           </div>
+         </div>
+      </form>
+    </div>
+    
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">メールアドレス</label>
+              <%= @customer.email %>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    <div class="col-md-8 order-md-1">
+      <form class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="evaluation">会員ステータス</label>
+              <% if @customer.is_deleted %>
+                <span>退会</span>
+              <% else %>
+                <span>有効</span>
+              <% end %>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+    </div>
         <%= link_to "編集する", edit_admin_customer_path, class:"btn btn-success" %>
         <%= link_to "トップページ", admin_root_path, class:"btn btn-primary" %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  </body>

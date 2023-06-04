@@ -1,5 +1,8 @@
-<section class="inner">
-	<h2 class="section-ttl">ジャンル名編集</h2>
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1>メーカー編集</h1>
+    </div>
+  </section>
+  
   <%= render 'form', genre: @genre, url: admin_genre_path(@genre), submit: '更新' %>
-</section>
-<%= link_to '削除', admin_genre_path, method: :delete %>
+  <%= link_to '削除', admin_genre_path, method: :delete %>

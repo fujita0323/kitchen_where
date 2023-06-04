@@ -5,6 +5,10 @@ class Admin::MakersController < ApplicationController
     @makers = Maker.all
   end
 
+  def edit
+    @maker = Maker.find(params[:id])
+  end
+
   def create
     @maker = Maker.new(maker_params)
     if @maker.save
@@ -15,10 +19,6 @@ class Admin::MakersController < ApplicationController
     end
   end
 
-  def edit
-    @maker = Maker.find(params[:id])
-  end
-
   def update
     @maker = Maker.find(params[:id])
     if @maker.update(maker_params)
@@ -27,7 +27,7 @@ class Admin::MakersController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     maker = Maker.find(params[:id])
     maker.destroy

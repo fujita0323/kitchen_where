@@ -1,11 +1,6 @@
 class Admin::KitchensController < ApplicationController
   before_action :authenticate_admin!
 
-  # kitchenこれなんで？
-  def new
-    @kitchen = Kitchen.new
-  end
-
   def index
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
@@ -24,23 +19,28 @@ class Admin::KitchensController < ApplicationController
     @all_kitchens_count = all_kitchens.count
   end
 
-  def create
-    @kitchen = Kitchen.new(kitchen_params)
-    @kitchen.save ? (redirect_to admin_kitchen_path(@kitchen)) : (render :new)
-  end
-
   def show
     @kitchen = Kitchen.find(params[:id])
+  end
+
+  # kitchenこれなんで？
+  def new
+    @kitchen = Kitchen.new
   end
 
   def edit
     @kitchen = Kitchen.find(params[:id])
   end
 
+  def create
+    @kitchen = Kitchen.new(kitchen_params)
+    @kitchen.save ? (redirect_to admin_kitchen_path(@kitchen)) : (render :new)
+  end
+
   def update
-  @kitchen = Kitchen.find(params[:id])
-  @kitchen.update(kitchen_params)
-  redirect_to admin_kitchen_path(@kitchen.id)
+    @kitchen = Kitchen.find(params[:id])
+    @kitchen.update(kitchen_params)
+    redirect_to admin_kitchen_path(@kitchen.id)
   end
 
   def destroy
@@ -48,7 +48,6 @@ class Admin::KitchensController < ApplicationController
     kitchen.destroy
     redirect_to admin_kitchens_path
   end
-
 
   private
 

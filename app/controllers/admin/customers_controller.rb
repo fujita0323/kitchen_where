@@ -3,7 +3,7 @@ class Admin::CustomersController < ApplicationController
 
   def index
     @customer = Customer.all
-    #byebug
+    # byebug
   end
 
   def show
@@ -24,7 +24,8 @@ class Admin::CustomersController < ApplicationController
     end
   end
 
-private
+  private
+
   def customer_params
     params.require(:customer).permit(:nickname, :image, :email, :is_deleted)
   end

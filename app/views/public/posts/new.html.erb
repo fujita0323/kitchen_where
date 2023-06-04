@@ -10,25 +10,31 @@
   
   
   <body class="bg-light">
-      <%= form_with model: [@kitchen,@post] do |f| %>
-    <div class="container">
-  <div class="row">
-    <div class="col-md-8 order-md-1">
-      <h4 class="mb-3">Review</h4>
-      <form class="needs-validation" novalidate>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            <label for="kitchen-img">キッチン写真</label>
-              <%= f.file_field :image, accept: "image/*", required: true %>
+    <%= form_with model: [@kitchen,@post] do |f| %>
+      <div class="container">
+          <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Review</h4>
+              <form class="needs-validation" novalidate>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label for="kitchen-img">キッチン写真</label>
+                      <%= f.file_field :image, accept: "image/*", required: true %>
+                  </div>
+                </div>
+              </form>
           </div>
+
     <div class="col-md-8 order-md-1">
       <form class="needs-validation" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="review">レビュー</label>
               <%= f.text_area :review, required: true %>
-            </div>
           </div>
+        </div>
+      </form>
+    </div>
+        
     <div class="col-md-9 order-md-1">
       <form class="needs-validation" novalidate>
         <div class="row">
@@ -37,16 +43,19 @@
              <%= f.hidden_field :kitchen_id %>
              <div id="post_raty">
              </div>
-            </div>
           </div>
-         <%= f.submit '投稿', class: "btn btn-primary ml2" %>
-        <% end %>
-      </body>
+        </div>
+      </form>
+    </div>
+      <%= f.submit '投稿', class: "btn btn-primary ml2" %>
+      <% end %>
+      </div>
+  </body>
 
 
-<script>
-var elem = document.getElementById('post_raty');
-var opt = {
+  <script>
+    var elem = document.getElementById('post_raty');
+    var opt = {
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
