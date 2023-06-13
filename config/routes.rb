@@ -22,11 +22,13 @@ Rails.application.routes.draw do
 
     resources :customers, only: [:index, :show, :edit, :update]
     resources :kitchens, only: [:index, :create, :edit, :update, :show] do
-      resources :posts
+      resources :posts do
+        resources :comments, only: [:create, :new, :update, :destroy]
+      end
     end
-    resources :posts do
-      resources :comments, only: [:create, :new, :update, :destroy]
-    end
+    # resources :posts do
+    #   resources :comments, only: [:create, :new, :update, :destroy]
+    # end
   end
 
   namespace :admin do

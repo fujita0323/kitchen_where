@@ -47,9 +47,10 @@
 				      <td class="text-center align-middle">総合評価
 				      <%#= @kitchen.posts.average(:star) %>
                 <div id="post_raty_average"></div>
-                
+
                    <script>
 	                    var elem = document.getElementById('post_raty_average');
+	                    elem.innerHTML = '';
                     	var opt = {
 	                    starOn: "<%= asset_path('star-on.png') %>",
 	                    starOff: "<%= asset_path('star-off.png') %>",
@@ -110,6 +111,7 @@
 
               <script>
                  	var elem = document.getElementById('post_raty_<%= post.id %>');
+                 	elem.innerHTML = '';
                 	var opt = {
             	    starOn: "<%= asset_path('star-on.png') %>",
 	                starOff: "<%= asset_path('star-off.png') %>",

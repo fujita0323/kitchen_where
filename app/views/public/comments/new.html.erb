@@ -9,7 +9,7 @@
   </section>
 
   <body class="bg-light">
-    <%= form_with model: [@post,@comment],url: post_comments_path(@post.id) do |f| %>    <div class="container">
+    <%= form_with model: [@post,@comment],url: kitchen_post_comments_path(params[:kitchen_id], @post) do |f| %>    <div class="container">
       <div class="row">
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Comment</h4>

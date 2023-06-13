@@ -45,6 +45,7 @@
                <div id="post_raty_average"></div>
                <script>
           	       var elem = document.getElementById('post_raty_average');
+          	         elem.innerHTML = '';
 	                 var opt = {
 	                 starOn: "<%= asset_path('star-on.png') %>",
 	                 starOff: "<%= asset_path('star-off.png') %>",
@@ -80,7 +81,7 @@
              <% @post.comments.each do |comment| %>
 			         <tr>
                  <td>
-				           <%= form_with url: post_comment_path(@post.id,comment.id), method: :delete do |f| %>
+				           <%= form_with url: kitchen_post_comment_path(@kitchen, @post, comment), method: :delete do |f| %>
 		               <%= f.hidden_field :kitchen_id, value: params[:kitchen_id] %>
                    <%= f.submit '削除' %>
 				           <% end %>
@@ -100,7 +101,7 @@
              <% end %>
 			         <tr>
                  <td>
-                   <%= link_to "コメント", new_post_comment_path(@post.id,kitchen_id: params[:kitchen_id]), class: "btn btn-primary" %>
+                   <%= link_to "コメント", new_kitchen_post_comment_path(@kitchen, @post), class: "btn btn-primary" %>
                  </td>
                </tr>
            </tbody>
