@@ -11,24 +11,18 @@
   </head>
 
   <body>
-      <header>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <!--<a class="navbar-brand p-3" href="/">　%= image_tag('logo.png') %　</a>-->
-
-      <ul class="navbar-nav ml-auto">
-    </ul>
-    </nav>
-    </div>
-          <div class="container">
-<% if request.path.match(/\/admin(\/)?/) %>
-<%= render '/layouts/admin_header' %>
-
-<% else %>
-<%= render '/layouts/customer_header' %>
-<% end %>
-      </div>
-  　　</header>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <div class="container">
+          <a class="navbar-brand p-3 logo" href="/">Kitchen's me</a>
+          <% if request.path.match(/\/admin(\/)?/) %>
+            <%= render '/layouts/admin_header' %>
+          <% else %>
+            <%= render '/layouts/customer_header' %>
+          <% end %>
+        </div>
+      </nav>
+  　</header>
     <%= yield %>
   </body>
 </html>

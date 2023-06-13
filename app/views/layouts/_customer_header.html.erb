@@ -1,8 +1,8 @@
 <!--admin customerに変更-->
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <div class="container">
-      <ul class="navbar-nav ml-auto">
+ <!--<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">-->
+      <!--<div class="container">-->
+    <ul class="navbar-nav ml-auto">
       <% if customer_signed_in? %>
           <li style="margin: 20px;">ようこそ、<%= current_customer.nickname %>さん！</li>
           <li style="margin: 15px;">
@@ -41,6 +41,6 @@
             <%= link_to "管理者ページ", admin_session_path, class:"btn btn-outline-secondary" %>
           </li>
         <% end %>
-        </ul>
-</div>
-</nav>
+      </ul>
+<!--</div>-->
+<!--</nav>-->

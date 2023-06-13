@@ -1,70 +1,72 @@
   <section class="jumbotron text-center">
     <div class="container">
-      <h1>Kitchin Detail</h1>
+      <h1>Kitchen Detail</h1>
         <p class="lead text-muted">
-         セレクトした「Kitchin」の詳細ページです<br>
+         セレクトした「Kitchen」の詳細ページです<br>
         </p>
     </div>
   </section>
 
-  <div class="row">
-    <div class="col-12">
-      <table class="table table-bordered">
-        <thead class="thead-light">
-        </thead>
-          <tbody>
-		        <tr>
-			        <td class="text-center align-middle">
-			        	<%= @kitchen.maker.name %>
-			        </td>
-		      	</tr>
-			      <tr>
-			        <td class="text-center align-middle">
-			        	<%= @kitchen.genre.name %>
-			        </td>
-		      	</tr>
-		      	<tr>
-		      	  <td class="align-middle text-center">
-			        	<%= @kitchen.name %>
-			        </td>
-			      </tr>
-			      <tr>
-		      	  <td class="align-middle text-center">
-		        		<%= image_tag @kitchen.image, size: "300x300"%>
-		      	  </td>
-		       	</tr>
-			      <tr>
-			        <td class="align-middle text-center">
-				        <%= @kitchen.introduction %>
-			        </td>
-		      	</tr>
-			      <tr>
-		          <td class="text-center align-middle">
-				        ¥<%= @kitchen.price %>~
-			        </td>
-			      </tr>
-			      <tr>
-				      <td class="text-center align-middle">総合評価
-				      <%#= @kitchen.posts.average(:star) %>
-                <div id="post_raty_average"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6 mx-auto">
+        <table class="table table-bordered">
+          <thead class="thead-light">
+          </thead>
+            <tbody>
+  		        <tr>
+  			        <td class="text-center align-middle">
+  			        	<%= @kitchen.maker.name %>
+  			        </td>
+  		      	</tr>
+  			      <tr>
+  			        <td class="text-center align-middle">
+  			        	<%= @kitchen.genre.name %>
+  			        </td>
+  		      	</tr>
+  		      	<tr>
+  		      	  <td class="align-middle text-center">
+  			        	<%= @kitchen.name %>
+  			        </td>
+  			      </tr>
+  			      <tr>
+  		      	  <td class="align-middle text-center">
+  		        		<%= image_tag @kitchen.image, size: "300x300"%>
+  		      	  </td>
+  		       	</tr>
+  			      <tr>
+  			        <td class="align-middle text-center">
+  				        <%= @kitchen.introduction %>
+  			        </td>
+  		      	</tr>
+  			      <tr>
+  		          <td class="text-center align-middle">
+  				        ¥<%= @kitchen.price %>~
+  			        </td>
+  			      </tr>
+  			      <tr>
+  				      <td class="text-center align-middle">総合評価
+  				      <%#= @kitchen.posts.average(:star) %>
+                  <div id="post_raty_average"></div>
 
-                   <script>
-	                    var elem = document.getElementById('post_raty_average');
-	                    elem.innerHTML = '';
-                    	var opt = {
-	                    starOn: "<%= asset_path('star-on.png') %>",
-	                    starOff: "<%= asset_path('star-off.png') %>",
-	                    starHalf: "<%= asset_path('star-half.png') %>",
-	                    half      : false,
-	                    readOnly: true,
-	                    score: <%= @kitchen.posts.average(:star) %>,
-	                  };
-	                  raty(elem,opt);
-                  </script>
-		    		</td>
-			    </tr>
-          </tbody>
-      </table>
+                     <script>
+  	                    var elem = document.getElementById('post_raty_average');
+  	                    elem.innerHTML = '';
+                      	var opt = {
+  	                    starOn: "<%= asset_path('star-on.png') %>",
+  	                    starOff: "<%= asset_path('star-off.png') %>",
+  	                    starHalf: "<%= asset_path('star-half.png') %>",
+  	                    half      : false,
+  	                    readOnly: true,
+  	                    score: <%= @kitchen.posts.average(:star) %>,
+  	                  };
+  	                  raty(elem,opt);
+                    </script>
+  		    		</td>
+  			    </tr>
+            </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -77,59 +79,62 @@
     </div>
   </section>
 
-  <div class="row">
-   <div class="col-12">
-    <table class="table table-bordered">
-      <thead class="thead-light">
-      </thead>
-        <tbody>
-          <% @kitchen.posts.each do |post| %>
+  <div class="container">
+    <div class="row my-3">
+      <div class="col-12 col-md-4 mx-auto">
+        <%= link_to "レビュー", new_kitchen_post_path(@kitchen), class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
 
-            <tr>
-              <td class="align-middle text-center">
-                <%= post.customer.nickname %>
-                <%= image_tag post.customer.profile_image, size: "100x100" %>
-              </td>
-            </tr>
-            <tr>
-              <td class="align-middle text-center">
-                <%= link_to kitchen_post_path(@kitchen.id,post.id) do %>
-                <%= image_tag post.image, size: "300x300" %>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center align-middle">
-                <%= post.review %>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center align-middle">
-                <p id="post_raty_<%= post.id %>"></p>
-              </td>
-            </tr>
+    <div class="row">
+     <div class="col-12 col-md-6 mx-auto">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+        </thead>
+          <tbody>
+            <% @kitchen.posts.each do |post| %>
 
-              <script>
-                 	var elem = document.getElementById('post_raty_<%= post.id %>');
-                 	elem.innerHTML = '';
-                	var opt = {
-            	    starOn: "<%= asset_path('star-on.png') %>",
-	                starOff: "<%= asset_path('star-off.png') %>",
-	                starHalf: "<%= asset_path('star-half.png') %>",
-	                half      : false,
-	                readOnly: true,
-	                score: <%= post.star %>,
-	              };
-	              raty(elem,opt);
-              </script>
+              <tr>
+                <td class="align-middle text-center">
+                  <%= post.customer.nickname %>
+                  <%= image_tag post.customer.profile_image, size: "100x100" %>
+                </td>
+              </tr>
+              <tr>
+                <td class="align-middle text-center">
+                  <%= link_to kitchen_post_path(@kitchen.id,post.id) do %>
+                  <%= image_tag post.image, size: "300x300" %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center align-middle">
+                  <%= post.review %>
+                </td>
+              </tr>
+              <tr>
+                <td class="text-center align-middle">
+                  <p id="post_raty_<%= post.id %>"></p>
+                </td>
+              </tr>
 
-          <% end %>
-            <div class="row mt-3">
-              <div class="col-12 text-center">
-	              <%= link_to "レビュー", new_kitchen_post_path(@kitchen), class: "btn btn-primary ml2" %>
-              </div>
-            </div>
-        </tbody>
-      </table>
+                <script>
+                   	var elem = document.getElementById('post_raty_<%= post.id %>');
+                   	elem.innerHTML = '';
+                  	var opt = {
+              	    starOn: "<%= asset_path('star-on.png') %>",
+  	                starOff: "<%= asset_path('star-off.png') %>",
+  	                starHalf: "<%= asset_path('star-half.png') %>",
+  	                half      : false,
+  	                readOnly: true,
+  	                score: <%= post.star %>,
+  	              };
+  	              raty(elem,opt);
+                </script>
+
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
