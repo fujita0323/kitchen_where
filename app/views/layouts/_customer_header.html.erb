@@ -6,9 +6,6 @@
       <% if customer_signed_in? %>
           <li style="margin: 20px;">ようこそ、<%= current_customer.nickname %>さん！</li>
           <li style="margin: 15px;">
-            <%= link_to "top", root_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
             <%= link_to "about", about_path, class:"btn btn-outline-secondary" %>
           </li>
           <li style="margin: 15px;">
@@ -22,9 +19,6 @@
           </li>
 
         <% else %>
-          <li style="margin: 15px;">
-            <%= link_to "top", root_path, class:"btn btn-outline-secondary" %>
-          </li>
           <li style="margin: 15px;">
             <%= link_to "about", about_path, class:"btn btn-outline-secondary" %>
           </li>

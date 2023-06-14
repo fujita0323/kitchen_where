@@ -1,17 +1,17 @@
   <section class="jumbotron text-center">
     <div class="container">
-      <h3>新規会員登録</h3>
+      <h3>Sign up</h3>
     </div>
   </section>
-  
+
   <body class="text-center">
-   <%= form_with model: @customer, url: customer_registration_path do |f| %>  
+   <%= form_with model: @customer, url: customer_registration_path do |f| %>
    <%= render "public/shared/error_messages", resource: resource %>
     <form class="form-signin">
   <div class="field">
     <%= f.label :nickname, "ニックネーム" %><br />
     <%= f.text_field :nickname, autofocus: true, autocomplete: "email" %>  </div>
-  
+
   <div class="field">
     <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>

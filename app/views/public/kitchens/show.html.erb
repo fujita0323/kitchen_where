@@ -41,7 +41,7 @@
   		      	</tr>
   			      <tr>
   		          <td class="text-center align-middle">
-  				        ¥<%= @kitchen.price %>~
+  				        &yen; <%= @kitchen.price.to_s(:delimited) %>~
   			        </td>
   			      </tr>
   			      <tr>
@@ -78,6 +78,7 @@
       </p>
     </div>
   </section>
+
 
   <div class="container">
     <div class="row my-3">

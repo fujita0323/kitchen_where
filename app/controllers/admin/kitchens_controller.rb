@@ -23,7 +23,6 @@ class Admin::KitchensController < ApplicationController
     @kitchen = Kitchen.find(params[:id])
   end
 
-  # kitchenこれなんで？
   def new
     @kitchen = Kitchen.new
   end

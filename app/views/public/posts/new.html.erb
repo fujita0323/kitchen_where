@@ -14,29 +14,24 @@
       <div class="container">
           <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Review</h4>
-              <form class="needs-validation" novalidate>
                 <div class="row">
                   <div class="col-md-6 mb-3">
                     <label for="kitchen-img">キッチン写真</label>
                       <%= f.file_field :image, accept: "image/*", required: true %>
                   </div>
                 </div>
-              </form>
           </div>
 
     <div class="col-md-8 order-md-1">
-      <form class="needs-validation" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="review">レビュー</label>
               <%= f.text_area :review, required: true %>
           </div>
         </div>
-      </form>
     </div>
         
     <div class="col-md-9 order-md-1">
-      <form class="needs-validation" novalidate>
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="evaluation">評価</label>
@@ -45,7 +40,6 @@
              </div>
           </div>
         </div>
-      </form>
     </div>
       <%= f.submit '投稿', class: "btn btn-primary ml2" %>
       <% end %>

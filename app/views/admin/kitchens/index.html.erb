@@ -23,7 +23,7 @@
              <tr>
                <td><%= image_tag kitchen.image, size: "100x100" %></td>
                <td><u><%= link_to kitchen.name, admin_kitchen_path(kitchen), style: "color: black;" %></u></td>
-               <td><%= kitchen.price %>円</td>
+               <td>&yen; <%= kitchen.price.to_s(:delimited) %></td>
 				       <td><%= link_to kitchen.genre.name, admin_kitchens_path(genre_id: kitchen.genre_id) %></td>
 			       	 <td><%= link_to kitchen.maker.name, admin_kitchens_path(maker_id: kitchen.maker_id) %></td>
             </tr>

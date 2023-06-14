@@ -1,5 +1,5 @@
- <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <div class="container">
+ <!--<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">-->
+      <!--<div class="container">-->
       <ul class="navbar-nav ml-auto">
 
           <% if admin_signed_in? %>
@@ -19,14 +19,5 @@
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-secondary" %>
           </li>
         <% else %>
-          <li style="margin: 15px;">
-            <%= link_to "メーカー一覧", admin_makers_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "ジャンル一覧", admin_genres_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %>
-          </li>
         <% end %>
-            </div>
+       </ul>

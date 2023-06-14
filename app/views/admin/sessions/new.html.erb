@@ -9,14 +9,14 @@
 <%= form_with model: @admin, url: admin_session_path do |f| %>  
 <%= render "admin/shared/error_messages", resource: resource %>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email, "メールアドレス" %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :password, "パスワード" %><br />
     <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+  </div> 
 
   <% if devise_mapping.rememberable? %>
     <div class="field">
@@ -26,7 +26,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Log in", class: "btn btn-primary ml2" %>
+    <%= f.submit "ログイン", class: "btn btn-primary ml2" %>
   </div>
 <% end %>
 

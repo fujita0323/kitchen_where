@@ -8,8 +8,9 @@
     </div>
   </section>
 
+<div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 col-md-6 mx-auto">
       <table class="table table-bordered">
         <thead class="thead-light">
         </thead>
@@ -40,11 +41,11 @@
 			        </td>
 			      </tr>
 			     <tr>
-				     <td class="text-center align-middle">総合評価
+				     <td class="text-center align-middle">評価
 				     <%#= @kitchen.posts.average(:star) %>
-               <div id="post_raty_average"></div>
+               <div id="post_raty"></div>
                <script>
-          	       var elem = document.getElementById('post_raty_average');
+          	       var elem = document.getElementById('post_raty');
           	         elem.innerHTML = '';
 	                 var opt = {
 	                 starOn: "<%= asset_path('star-on.png') %>",
@@ -52,7 +53,7 @@
 	                 starHalf: "<%= asset_path('star-half.png') %>",
 	                 half      : false,
 	                 readOnly: true,
-	                 score: <%= @kitchen.posts.average(:star) %>,
+	                 score: <%= @post.star %>,
 	               };
 	               raty(elem,opt);
                </script>
@@ -71,9 +72,17 @@
         </table>
     </div>
   </div>
+</div>
+
+<div class="container">
+  <div class="row my-3">
+    <div class="col-12 col-md-4 mx-auto">
+        <%= link_to "コメント", new_kitchen_post_comment_path(@kitchen, @post), class: "btn btn-primary btn-block" %>
+    </div>
+  </div>
 
   <div class="row">
-    <div class="col-12">
+    <div class="col-12 col-md-6 mx-auto">
       <table class="table table-bordered">
         <thead class="thead-light">
          </thead>
@@ -99,12 +108,8 @@
                  </td>
 			         </tr>
              <% end %>
-			         <tr>
-                 <td>
-                   <%= link_to "コメント", new_kitchen_post_comment_path(@kitchen, @post), class: "btn btn-primary" %>
-                 </td>
-               </tr>
-           </tbody>
+         </tbody>
       </table>
     </div>
   </div>
+</div>

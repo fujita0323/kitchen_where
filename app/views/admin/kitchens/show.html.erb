@@ -33,7 +33,7 @@
         <tr>
           <td style="width:30%">価格</td>
           <td>
-          ¥<%= @kitchen.price %>~
+          &yen; <%= @kitchen.price.to_s(:delimited) %>~
           </td>
         </tr>
         <tr>
