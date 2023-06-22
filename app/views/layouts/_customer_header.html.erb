@@ -1,40 +1,34 @@
-<!--admin customerに変更-->
-
- <!--<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">-->
-      <!--<div class="container">-->
-    <ul class="navbar-nav ml-auto">
-      <% if customer_signed_in? %>
-          <li style="margin: 20px;">ようこそ、<%= current_customer.nickname %>さん！</li>
-          <li style="margin: 15px;">
-            <%= link_to "about", about_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "マイページ", customer_path(current_customer), class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "キッチン一覧", kitchens_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-secondary" %>
-          </li>
-
-        <% else %>
-          <li style="margin: 15px;">
-            <%= link_to "about", about_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "キッチン一覧", kitchens_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %>
-          </li>
-          <li style="margin: 15px;">
-            <%= link_to "管理者ページ", admin_session_path, class:"btn btn-outline-secondary" %>
-          </li>
-        <% end %>
-      </ul>
-<!--</div>-->
-<!--</nav>-->
+<nav class="navbar">
+  <button class="navbar-toggler" type="button"
+      data-toggle="collapse"
+      data-target="#navmenu1"
+      aria-controls="navmenu1"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <% if customer_signed_in? %>
+<a href="#" class="navbar-brand">ようこそ、<%= current_customer.nickname %>さん！</a>
+  <div class="collapse navbar-collapse" id="navmenu1">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#"><%= link_to "about", about_path, class:"btn btn-outline-secondary" %></a>
+      <a class="nav-item nav-link" href="#"><%= link_to "マイページ", customer_path(current_customer), class:"btn btn-outline-secondary" %></a>
+      <a class="nav-item nav-link" href="#"><%= link_to "キッチン一覧", kitchens_path, class:"btn btn-outline-secondary" %></a>
+      <a class="nav-item nav-link" href="#"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-secondary" %></a>
+    </div>
+  </div>
+  
+  <% else %>
+    <div class="collapse navbar-collapse" id="navmenu1">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="#"><%= link_to "about", about_path, class:"btn btn-outline-secondary" %></a>
+      <a class="nav-item nav-link" href="#"><%= link_to "キッチン一覧", kitchens_path, class:"btn btn-outline-secondary" %></a>
+      <a class="nav-item nav-link" href="#"><%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %></a>
+      <a class="nav-item nav-link" href="#"><%= link_to "ログイン", new_customer_session_path, class:"btn btn-outline-secondary" %></a>
+      <a class="nav-item nav-link" href="#"><%= link_to "管理者ページ", admin_session_path, class:"btn btn-outline-secondary" %></a>
+    </div>
+  </div>
+  
+  <% end %>
+</nav>
