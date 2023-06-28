@@ -83,11 +83,12 @@
 
   <div class="row">
     <div class="col-12 col-md-6 mx-auto">
-      <table class="table table-bordered">
+             <% @post.comments.each do |comment| %>
+
+      <table class="table table-bordered mb-3">
         <thead class="thead-light">
          </thead>
            <tbody>
-             <% @post.comments.each do |comment| %>
 			         <tr>
                  <td>
 				           <%= form_with url: kitchen_post_comment_path(@kitchen, @post, comment), method: :delete do |f| %>
@@ -107,9 +108,9 @@
                    <%= comment.reaction %>
                  </td>
 			         </tr>
-             <% end %>
          </tbody>
       </table>
+             <% end %>
     </div>
   </div>
 </div>

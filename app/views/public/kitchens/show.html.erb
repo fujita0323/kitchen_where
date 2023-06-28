@@ -89,11 +89,12 @@
 
     <div class="row">
      <div class="col-12 col-md-6 mx-auto">
-      <table class="table table-bordered">
+
+            <% @kitchen.posts.each do |post| %>
+      <table class="table table-bordered mb-3">
         <thead class="thead-light">
         </thead>
           <tbody>
-            <% @kitchen.posts.each do |post| %>
 
               <tr>
                 <td class="align-middle text-center">
@@ -132,10 +133,10 @@
   	              };
   	              raty(elem,opt);
                 </script>
-
-            <% end %>
           </tbody>
         </table>
+            <% end %>
+
       </div>
     </div>
   </div>
