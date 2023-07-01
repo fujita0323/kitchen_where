@@ -58,4 +58,3 @@ class Public::PostsController < ApplicationController
     @kitchen = Kitchen.find(params[:kitchen_id])
   end
 end
-# あと評価
